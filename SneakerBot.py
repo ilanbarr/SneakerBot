@@ -36,6 +36,45 @@ class SneakerBot:
         url = URLGen(model, size)
         CheckSizes(url, model)
 
+    def addtocart(self):
+        response = session.get(URL, headers={'Upgrade-Insecure-Requests': '1'})
+        URL = response.URL
+        soup = bs(response.text, 'html.parser')
+        size_container = soup.find('select', {'name': Model})
+        Size = 'null'
+
+        try:
+            for vlues in size_container.find_all('option'):
+                if size == values.string.strip():
+                    Size=values['value']
+                    break
+        except:
+            print('All sold out!')
+            return false, 'null', 'null'
+
+        payload = {
+            'Quantity': '1',
+            'ajax': 'true',
+            'layer': 'Add To Bag overlay',
+            'masterModel': Model,
+            'Model': Size
+        }
+        headers = {
+            'Accept': '*/*',
+            'Origin': 'http://www.adidas.com',
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+        if size_val != 'null':
+            URL = 'http://www.adidas.com' + '/on/demandware.store/Sites-adidas-US-site/en_US/Cart-MiniAddProduct'
+            response = session.post(url, data=payload, headers=headers)
+            if response.status_code == 200:
+                print ('Shoe was added to cart')
+                return True, URL, Size
+            else:
+                print('{} unavailable'.format(Size))
+                return False, URL, Size
+
+
 
 
 
