@@ -22,6 +22,7 @@ class SneakerBot:
     URL = URLGen(Model,float(Size))
     print(str(URL))
 
+<<<<<<< HEAD
     def addtocart(self):
         Model = input('model #')
         Size = input('Size:  ')
@@ -67,6 +68,8 @@ class SneakerBot:
     addtocart()
 
 
+=======
+>>>>>>> parent of c768671... @ilanbarr @edeitrick
     def CheckSizes(url,model):
         headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1)AppleWebKit/537.36 (KHTML,like Gecko)Chrome/39.0.2171.95 Safari/537.36'}
         RawHTML = requests.get(url, headers=headers)
@@ -81,10 +84,15 @@ class SneakerBot:
             print(str(model) + ' Size ' + str(size) + ' Available ')
 
     def Main(model, size):
+<<<<<<< HEAD
         url = model.URLGen(model, size)
         model.CheckSizes(url, model)
 
 
+=======
+        url = URLGen(model, size)
+        CheckSizes(url, model)
+>>>>>>> parent of c768671... @ilanbarr @edeitrick
 
 
 
