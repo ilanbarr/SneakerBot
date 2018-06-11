@@ -2,7 +2,8 @@ import requests
 import random
 import webbrowser
 import bs4
-
+import mechanicalsoup
+import random
 
 
 # headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko)
@@ -17,12 +18,8 @@ class SneakerBot:
         URL = 'http://www.adidas.com/us/' + str(model) + '.html?forceSelSize=' + str(model) + '_' + str(ShoeSizeCode)
         return URL;
 
-    Model = input('model #')
-    Size = input('Size:  ')
-    URL = URLGen(Model,float(Size))
-    print(str(URL))
 
-<<<<<<< HEAD
+
     def addtocart(self):
         Model = input('model #')
         Size = input('Size:  ')
@@ -65,11 +62,6 @@ class SneakerBot:
                 print('{} unavailable'.format(Size))
                 return False, URL, Size
 
-    addtocart()
-
-
-=======
->>>>>>> parent of c768671... @ilanbarr @edeitrick
     def CheckSizes(url,model):
         headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1)AppleWebKit/537.36 (KHTML,like Gecko)Chrome/39.0.2171.95 Safari/537.36'}
         RawHTML = requests.get(url, headers=headers)
@@ -84,20 +76,55 @@ class SneakerBot:
             print(str(model) + ' Size ' + str(size) + ' Available ')
 
     def Main(model, size):
-<<<<<<< HEAD
         url = model.URLGen(model, size)
         model.CheckSizes(url, model)
-
-
-=======
         url = URLGen(model, size)
         CheckSizes(url, model)
->>>>>>> parent of c768671... @ilanbarr @edeitrick
+
+    #Model = input('model #')
+    #Size = input('Size:  ')
+    #URL = URLGen(Model,float(Size))
+    #print(str(URL))
+    #addtocart()
+
+    #mechanical soup tutorial
+    #browser = mechanicalsoup.StatefulBrowser()
+    #browser.open("http://httpbin.org/")
+    #browser.follow_link("forms")
+    #print(browser.get_url())
+
+    #browser3 = mechanicalsoup.StatefulBrowser()
+    #browser3.open("http://www.google.com/")
+    #imagesLink = browser3.links().pop(0)
+    #browser3.follow_link(imagesLink)
+    #browser3.select_form()
+    #form = browser3.get_current_form()
+    #print(form.print_summary())
+    #form.set("q", "Guinea Pig")
+    #form.choose_submit('btnG')
+    #browser3.submit_selected()
+    #print(browser3.get_url())
+    #gpPics = browser3.links()
+    #print(gpPics)
+    #browser3.follow_link(gpPics.pop(0))
+    #print(browser3.get_url())
+
+    browser2 = mechanicalsoup.StatefulBrowser()
+    browser2.open("https://www.nike.com/t/air-huarache-mens-shoe-eoToq9X2")
+    soup = browser2.get_current_page()
+    #print(soup)
+    #print(soup.find_all('gnav'))
+    browser2.select_form()
+    form = browser2.get_current_form()
+    print(form.print_summary())
+    Model = input('model #')
+    form.set("search", Model)
+    form.choose_submit(form.)
+    #browser2.submit_selected()
+    browser2.submit(form)
+    print(browser2.get_url())
 
 
 
 
-
-
-
-
+    #print(browser2.list_links())
